@@ -9,7 +9,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.io/packages/source/${{ name[0] }}/${{ name }}/docker-squash-${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/docker-squash-${{ version }}.tar.gz
   sha256: 33120a217fa9804530d1cf8091aacc5abf9020c6bc51c5108ae80ff8625782df
 
 build:
@@ -22,10 +22,11 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python ${{ python_min }}.*
     - pip
+    - setuptools
   run:
-    - python >=3.6
+    - python >=${{ python_min }}
     - docker-py
     - six
 
