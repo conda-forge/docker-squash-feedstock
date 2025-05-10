@@ -2,15 +2,15 @@ schema_version: 1
 
 context:
   name: docker-squash
-  version: 1.2.0
+  version: "1.2.2"
 
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/docker-squash-${{ version }}.tar.gz
-  sha256: 33120a217fa9804530d1cf8091aacc5abf9020c6bc51c5108ae80ff8625782df
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 74dd70412ddcf570bcd322567929062342793d1ec70c63b5371cc9e2808ae2ef
 
 build:
   number: 1
