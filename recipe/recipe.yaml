@@ -29,6 +29,7 @@ requirements:
     - python >=${{ python_min }}
     - docker-py
     - six
+    - packaging
 
 tests:
   - python:
