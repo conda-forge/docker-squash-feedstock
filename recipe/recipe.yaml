@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: docker-squash
+  version: 1.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.io/packages/source/${{ name[0] }}/${{ name }}/docker-squash-${{ version }}.tar.gz
+  sha256: 33120a217fa9804530d1cf8091aacc5abf9020c6bc51c5108ae80ff8625782df
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - docker-squash=docker_squash.cli:run
+
+requirements:
+  host:
+    - python >=3.6
+    - pip
+  run:
+    - python >=3.6
+    - docker-py
+    - six
+
+tests:
+  - python:
+      imports:
+        - docker_squash
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+    script:
+      - docker-squash --help
+
+about:
+  summary: Docker layer squashing tool
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/goldmann/docker-squash
+
+extra:
+  recipe-maintainers:
+    - janjagusch
